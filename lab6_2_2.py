@@ -4,7 +4,11 @@ import time
 
 def example(arg):
     print(f"processing {threading.currentThread().name} - time: {arg}")
+<<<<<<< HEAD
     time.sleep(2)
+=======
+    time.sleep(4)
+>>>>>>> 5923f3d (master)
 
 
 i = 0
@@ -18,4 +22,7 @@ for i in threads:
         if i.isDaemon():
             i.setName("Daemon")
         i.start()
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5923f3d (master)
