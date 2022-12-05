@@ -18,12 +18,6 @@ sites = [
 ]
 
 
-def visit_sites():
-    global sites
-    for site in sites:
-        tmp = time.time()
-
-
 def visit_sites(sites):
     for site in sites:
         print(f"Site: {site}")
@@ -31,13 +25,6 @@ def visit_sites(sites):
 
 
 start = time.time()
-visit_sites()
-visit_sites()
-print(f"Without threading: {round(time.time() - start, 4)} seconds")
-start = time.time()
-for i in range(2):
-    t = Thread(target=visit_sites())
-    t.start()
 visit_sites(sites)
 print(f"Without threading: {round(time.time() - start, 4)} seconds")
 start = time.time()

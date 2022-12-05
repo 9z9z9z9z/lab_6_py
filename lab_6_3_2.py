@@ -1,5 +1,4 @@
-
-from multiprocessing import Array, Process, Queue, Value
+from multiprocessing import Process, Value
 import time
 from random import randint
 

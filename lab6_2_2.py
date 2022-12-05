@@ -1,20 +1,28 @@
 import threading
+from threading import Thread, Condition
 import time
 
 
-def example(arg):
-    print(f"processing {threading.currentThread().name} - time: {arg}")
-    time.sleep(4)
+def example(name, number):
+    print(f"Name: {name}, Num: {number}")
+    time.sleep(2)
 
 
+c = Condition()
 i = 0
-start = time.time()
-threads = [threading.Thread(target=example, args=(time.time() - start, ), name="thread 1"),
-           threading.Thread(target=example, args=(time.time() - start,), name="thread 2"),
-           threading.Thread(target=example, args=(time.time() - start, ), name="thread 3", daemon=True)]
 
-for i in threads:
-    if not i.is_alive():
-        if i.isDaemon():
-            i.setName("Daemon")
-        i.start()
+t1 = Thread(target=example, args=("thread 1", threading.active_count()))
+# t1.start()
+t2 = Thread(target=example, args=("thread 2", threading.active_count()))
+# t2.start()
+t3 = Thread(target=example, args=("thread 3", threading.active_count()))
+# t3.start()
+
+# t1.join()
+# t2.join()
+# t3.join()
+
+if threading.active_count() > 1:
+    print(f"\nYou don't close thread")
+else:
+    print(f"Program is ended")
