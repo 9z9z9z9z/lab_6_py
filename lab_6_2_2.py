@@ -1,5 +1,5 @@
 import threading
-from threading import Thread, Condition
+from threading import Thread
 import time
 
 
@@ -7,9 +7,6 @@ def example(name, number):
     print(f"Name: {name}, Num: {number}")
     time.sleep(2)
 
-
-c = Condition()
-i = 0
 
 t1 = Thread(target=example, args=("thread 1", threading.active_count()))
 # t1.start()
