@@ -1,4 +1,4 @@
-from multiprocessing import Process, Value
+from multiprocessing import Process
 import time
 from random import randint
 
@@ -13,6 +13,7 @@ def filling(Q, P, N):
         for j in range(N // 5):
             tmp.append(func(Q[j], P[i]))
         ret.append(tmp)
+        print(tmp, end="\n")
 
 
 def func(q, p):
@@ -29,11 +30,14 @@ def generate(N):
 if __name__ == "__main__":
     Q = generate(N)
     P = generate(N)
+    ps = []
     start = time.time()
     filling(Q, P, N * 5)
     print(f"Without multiprocessing: {round(time.time() - start, 5)} seconds")
     start = time.time()
     for _ in range(5):
-        p = Process(target=filling, args=(Q[::5], P[::5], N))
-        p.start()
+        ps.append(Process(target=filling, args=(Q[::5], P[::5], N)))
+        ps[_].start()
+    for i in ps:
+        i.join()
     print(f"With multiprocessing: {round(time.time() - start, 5)} seconds")
