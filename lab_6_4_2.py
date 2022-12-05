@@ -20,7 +20,6 @@ sites = [
 
 def visit_sites(sites):
     for site in sites:
-        print(f"Site: {site}")
         urllib.request.urlopen(site)
 
 
@@ -29,8 +28,8 @@ visit_sites(sites)
 print(f"Without threading: {round(time.time() - start, 4)} seconds")
 start = time.time()
 t = Thread(target=visit_sites, args=(sites[:len(sites) // 2],))
-t.start()
 t1 = Thread(target=visit_sites, args=(sites[len(sites) // 2:],))
+t.start()
 t1.start()
 t.join()
 t1.join()
